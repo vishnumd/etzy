@@ -1,7 +1,7 @@
 # Introduction
 This project serves as a template to kick-start your automated testsuite to test against a HTML5 website.
 
-# How to customize this project template to test your web project
+## How to customize this project template to test your web project
 
 Clone the repository:
 
@@ -14,4 +14,18 @@ Edit settings.gradle and change rootProject.name to your project's artifact id.
 Right click on the package com.db.awm.bauhaus.project and change to your project package name.
  
 Edit serenity.properties to make changes specific to your project.
+
+## Running tests
+
+To run all tests, except those marked as @wip, @pending, @ignore, @fail, run the command below:
+
+`$ gradle clean test`
+
+To run scenarios tagged as tag1 OR tag2 on Chrome: 
+
+`$ gradle clean test aggregate -Dwebdriver.driver=chrome -Dcucumber.options="--tags @tag1,@tag2"` 
+
+To run scenarios tagged as tag1 AND tag2 on Safari against abc.com: 
+`$ gradle clean test aggregate -Dwebdriver.driver=safari -Dwebdriver.base.url=http://abc.com -Dcucumber.options="--tags @tag1 --tags @tag2"`
+
 
