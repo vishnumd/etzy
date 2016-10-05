@@ -1,0 +1,41 @@
+repositories {
+    maven {
+        url 'http://artifactory.awmd.intranet.db.com:8081/artifactory/libs-snapshot-local/'
+    }
+    mavenLocal()
+    jcenter()
+}
+
+buildscript{
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:1.1.40")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: "idea"
+apply plugin: "net.serenity-bdd.aggregator"
+
+println "project.serenity.outputDirectory= ${project.serenity.outputDirectory}"
+
+dependencies {
+    testCompile 'com.db.dbk:dbk-qa:0.0.1-SNAPSHOT'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.assertj:assertj-core:1.7.0'
+    testCompile 'org.slf4j:slf4j-simple:1.7.7'
+    testCompile 'org.json:json:20160810'
+}
+
+tasks.withType(Test) {
+    systemProperties = System.properties
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
+gradle.startParameter.continueOnFailure = true
