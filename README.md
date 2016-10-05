@@ -11,5 +11,7 @@ Open the project template in IntelliJ. Choose the auto-import option, if provide
 
 Edit settings.gradle and change rootProject.name to your project's artifact id. 
 
-Right click on the package com.db.awm.bauhaus.project and change to your project package name. 
+Right click on the package com.db.awm.bauhaus.project and change to your project package name.
+ 
+Edit serenity.properties to make changes specific to your project.
 
