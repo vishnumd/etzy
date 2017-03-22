@@ -1,14 +1,17 @@
 repositories {
-    maven {
-        url 'http://artifactory.awmd.intranet.db.com:8081/artifactory/libs-snapshot-local/'
-    }
+//    maven {
+//        url 'http://artifactory.awmd.intranet.db.com:8081/artifactory/maven-all/'
+//    }
     mavenLocal()
     jcenter()
 }
 
-buildscript{
+buildscript {
     repositories {
-        mavenCentral()
+//        maven {
+//            url 'http://artifactory.awmd.intranet.db.com:8081/artifactory/maven-all/'
+//        }
+        mavenLocal()
         jcenter()
     }
     dependencies {
@@ -23,19 +26,27 @@ apply plugin: "net.serenity-bdd.aggregator"
 println "project.serenity.outputDirectory= ${project.serenity.outputDirectory}"
 
 dependencies {
-    testCompile 'com.db.dbk:dbk-qa:0.0.1-SNAPSHOT'
+    def SERENITY_VERSION = "1.2.1-rc.5"
+
+    //    testCompile 'com.db.dbk:dbk-qa:0.0.1-SNAPSHOT'
+    testCompile 'net.serenity-bdd:serenity-core:' + SERENITY_VERSION
+    testCompile 'net.serenity-bdd:serenity-rest-assured:' + SERENITY_VERSION
+    testCompile 'net.serenity-bdd:serenity-cucumber:1.1.13'
+    testCompile 'net.serenity-bdd:serenity-screenplay:' + SERENITY_VERSION
+    testCompile 'net.serenity-bdd:serenity-screenplay-webdriver:' + SERENITY_VERSION
+    testCompile 'net.serenity-bdd:browse-the-web:1.1.34'
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:1.7.0'
     testCompile 'org.slf4j:slf4j-simple:1.7.7'
     testCompile 'org.json:json:20160810'
 }
 
-tasks.withType(Test) {
-    systemProperties = System.properties
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.1'
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+    /* Pass all system properties: */
+    systemProperties System.getProperties()
 }
 
 gradle.startParameter.continueOnFailure = true
