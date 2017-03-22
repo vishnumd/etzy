@@ -1,16 +1,10 @@
 repositories {
-//    maven {
-//        url 'http://artifactory.awmd.intranet.db.com:8081/artifactory/maven-all/'
-//    }
     mavenLocal()
     jcenter()
 }
 
 buildscript {
     repositories {
-//        maven {
-//            url 'http://artifactory.awmd.intranet.db.com:8081/artifactory/maven-all/'
-//        }
         mavenLocal()
         jcenter()
     }
@@ -28,17 +22,17 @@ println "project.serenity.outputDirectory= ${project.serenity.outputDirectory}"
 dependencies {
     def SERENITY_VERSION = "1.2.1-rc.5"
 
-    //    testCompile 'com.db.dbk:dbk-qa:0.0.1-SNAPSHOT'
     testCompile 'net.serenity-bdd:serenity-core:' + SERENITY_VERSION
     testCompile 'net.serenity-bdd:serenity-rest-assured:' + SERENITY_VERSION
     testCompile 'net.serenity-bdd:serenity-cucumber:1.1.13'
+    testCompile 'org.assertj:assertj-core:3.1.0'
+    testCompile 'org.slf4j:slf4j-simple:1.7.12'
+    testCompile 'com.googlecode.lambdaj:lambdaj:2.3.3'
+    testCompile 'io.codearte.jfairy:jfairy:0.5.3'
     testCompile 'net.serenity-bdd:serenity-screenplay:' + SERENITY_VERSION
     testCompile 'net.serenity-bdd:serenity-screenplay-webdriver:' + SERENITY_VERSION
     testCompile 'net.serenity-bdd:browse-the-web:1.1.34'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.assertj:assertj-core:1.7.0'
-    testCompile 'org.slf4j:slf4j-simple:1.7.7'
-    testCompile 'org.json:json:20160810'
+    testCompile 'net.serenity-bdd:serenity-junit:' + SERENITY_VERSION
 }
 
 test {
