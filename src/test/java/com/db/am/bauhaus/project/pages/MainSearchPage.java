@@ -1,4 +1,4 @@
-package com.db.awm.bauhaus.project.pages;
+package com.db.am.bauhaus.project.pages;
 
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
