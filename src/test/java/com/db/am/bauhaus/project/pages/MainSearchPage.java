@@ -16,8 +16,11 @@ public class MainSearchPage extends PageObject {
     @FindBy(id = "search-query")
     WebElementFacade inputBox;
 
-    @FindBy(css = ".btn.btn-orange.btn-append")
+    @FindBy(css = "#gnav-search div.search-button-wrapper.hide > button")
     WebElementFacade searchButton;
+
+    @FindBy(css = "vesta-hp-curated-category")
+    WebElementFacade productLink;
 
     public MainSearchPage(WebDriver driver) {
         super(driver);
@@ -33,6 +36,22 @@ public class MainSearchPage extends PageObject {
     }
 
     public String getAllCategoriesHeader() {
-        return find(By.cssSelector("h1.conform-heading.display-inline")).getText();
+        return find(By.cssSelector("#content div:nth-child(1) > h1")).getText();
+    }
+
+    public void clickProductIcon(int n) {
+        find(By.cssSelector("#content > div:nth-child(2) > div > span.vesta-hp-category-default > div > div > div > div:nth-child("+n+")")).click();
+    }
+
+    public String getTitle() {
+        return find(By.cssSelector("div.float-left h1")).getText();
+    }
+
+    public void selectProductCategory(String category){
+        find(By.linkText(category)).click();
+    }
+
+    public void selectSubProductCategory(String subCategory){
+        find(By.linkText(subCategory)).click();
     }
 }

@@ -30,4 +30,9 @@ public class SearchUser extends ScenarioSteps {
     public void verify_result_for_all_categories() {
         assertThat(mainSearchPage.getAllCategoriesHeader(), containsString(searchText));
     }
+
+    @Step
+    public void verify_result(String expected) {
+        assertThat(mainSearchPage.getTitle(), containsString(expected));
+    }
 }

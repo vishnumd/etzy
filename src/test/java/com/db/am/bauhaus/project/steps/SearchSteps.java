@@ -20,6 +20,9 @@ import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.containsText;
 import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
 
 /**
  * Created by ongshir on 05/10/2016.
@@ -70,4 +73,28 @@ public class SearchSteps {
                 seeThat("the all categories header ", the(SearchTarget.ALL_CATEGORIES_HEADER), containsText(searchText))
         );
     }
+
+    @When("^he select the following \"([^\"]*)\"$")
+    public void I_select_the_product(int index) {
+        mainSearchPage.clickProductIcon(index);
+    }
+
+    @Then("^the appropriate category \"([^\"]*)\" should be displayed$")
+    public void result_should_be_displayed(String result) {
+        user.verify_result(result);
+    }
+
+
+    @When("^he selects the product category \"([^\"]*)\"$")
+    public void I_select_the_product_category(String category) {
+        mainSearchPage.selectProductCategory(category);
+    }
+
+
+    @When("^he selects sub category \"([^\"]*)\"$")
+    public void I_select_the_product_sub_category(String subCategory) {
+        mainSearchPage.selectSubProductCategory(subCategory);
+    }
+
+
 }
